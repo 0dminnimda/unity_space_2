@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class physics : MonoBehaviour
 {
-    public float g = 1.0f;
+    static public float g = 1.0f;
     public float m = 1.0f;
     public float speed = 1.0f;
     private GameObject obj;
     private GameObject[] objs;
 
-    private float LawOfGravity(float m1, float m2, float r) {
+    static float LawOfGravity(float m1, float m2, float r) {
         float force = g * (m1 * m2) / (r * r);
         return force;
     }
 
-    private float Dist(GameObject ob1, GameObject ob2) {
+    static float Dist(GameObject ob1, GameObject ob2) {
         float force = Vector3.Distance(ob1.transform.position, ob2.transform.position);
         return force;
     }
 
-    private float CalculateForce(GameObject self, ArrayList objs) {
+    private float CalculateForce(ArrayList objs) {
         float forse;
         foreach (GameObject obj in objs) {
-            if (obj != self) {
-                forse = LawOfGravity(self.physics.m, obj.physics.m, 1);
+            if (obj != this) {
+                forse = LawOfGravity(this.m, obj.m, 1);
                 Debug.Log(forse);
             }
             //СalculateForces(objs)
